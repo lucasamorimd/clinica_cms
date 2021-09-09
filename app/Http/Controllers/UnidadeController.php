@@ -7,6 +7,7 @@ use App\Models\Medico;
 use App\Models\Medico_servico;
 use App\Models\Servico;
 use App\Models\Unidade;
+use App\Models\Unidade_medico;
 use App\Models\Unidade_servico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -202,6 +203,33 @@ class UnidadeController extends Controller
 
 
         return redirect()->route('detalharUnidade', $id_unidade)->with('aviso', [
+            'msg' => $msg,
+            'bg_notificacao' => $bg_notificacao,
+            'titulo_notificacao' => $notify_title,
+            'subtitulo_notificacao' => $notify_subtitle
+        ]);
+    }
+    public function destroyMedicoUnidade(Medico $medico, $id, $id_unidade)
+    {
+
+        if (!Gate::allows('admin')) {
+            return redirect()->route('home')->with('aviso', ['msg' => 'Não autorizado']);
+        }
+
+        $deletar_medico = $medico->where('id_medico', $id)->update(['is_deleted' => 1]);
+        Unidade_medico::where('id_medico', $id)->update(['is_deleted' => 1]);
+        Medico_servico::where('id_medico', $id)->update(['is_deleted' => 1]);
+        if ($deletar_medico === 1) {
+            $msg = "Médico excluído com sucesso";
+            $bg_notificacao = 'success';
+        } else {
+            $msg = "Erro ao excluír, tente novamente";
+            $bg_notificacao = 'error';
+        }
+        $notify_title = 'Deletar';
+        $notify_subtitle = 'Médico';
+
+        return redirect()->route('detalharUnidade', [$id_unidade])->with('aviso', [
             'msg' => $msg,
             'bg_notificacao' => $bg_notificacao,
             'titulo_notificacao' => $notify_title,

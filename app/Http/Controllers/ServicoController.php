@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServicoStoreRequest;
+use App\Http\Requests\ServicoUpdateStoreRequest;
 use App\Models\Medico;
 use App\Models\Medico_servico;
 use App\Models\Servico;
@@ -193,7 +194,7 @@ class ServicoController extends Controller
      * @param  \App\Models\Servico  $servico
      * @return \Illuminate\Http\Response
      */
-    public function update(ServicoStoreRequest $request, Servico $servico)
+    public function update(ServicoUpdateStoreRequest $request, Servico $servico)
     {
         if (!Gate::allows('admin')) {
             return redirect()->route('home')->with('aviso', ['msg' => 'Não autorizado']);
