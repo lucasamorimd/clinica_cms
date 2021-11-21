@@ -9,8 +9,6 @@ utilizando o template AdminLTE.
 ## Funcionário
 - Perfil: funcionario
 - Terá atribuições simples de gerenciar agendamento e visualizar outras configurações
-- Login: funcionario1@clinica.com
-- Senha: funcionario1
 - Possui 3 funcionários diferentes bastando apenas mudar o número no email e na senha indo de 1 a 3
 ## Administrador
 - Perfil : administrador
