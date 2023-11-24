@@ -7,6 +7,7 @@ use App\Models\Medico;
 use App\Models\Servico;
 use App\Models\Unidade;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,15 +21,14 @@ class DatabaseSeeder extends Seeder
     {
         $unidades = Unidade::factory(2)->create();
         foreach ($unidades as $unidade) {
-            $users =  User::factory(3)->has(Medico::factory()->for($unidade))->create();
-            if ($users::class == Collection::class) {
-                foreach ($users as $user) {
-                    Servico::factory(2)->hasAttached($user->medico->unidade)->hasAttached($user->medico)->create();
-                }
-            } else {
-                Servico::factory(2)->hasAttached($users->medico->unidade)->hasAttached($users->medico)->create();
-            }
-            User::factory(2)->has(Funcionario::factory()->for($unidade))->create();
+            Funcionario::factory([
+                'nome_funcionario' => 'Lucas Amorim',
+                'email' => 'lucas.ad@hotmail.com',
+                'password' => '$2y$10$WNzSBttwNJ5ZGlE3ojn7JORDfeCvhNrPH8d8VBGsteObQwklgZ/xK',
+                'tipo_perfil' => 'administrador',
+                'created_at' => now(),
+                'updated_at' => now()
+            ])->for($unidade)->create();
         }
     }
 }

@@ -22,7 +22,12 @@ class UnidadeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome_unidade' => $this->faker->name(),
+            'endereco_unidade' => $this->faker->address(),
+            'cidade_unidade' => $this->faker->city(),
+            'estado_unidade' => $this->faker->state(),
+            'telefone_unidade' => $this->faker->phoneNumber(),
+            'cnpj_unidade' => $this->faker->numberBetween()
         ];
     }
 }

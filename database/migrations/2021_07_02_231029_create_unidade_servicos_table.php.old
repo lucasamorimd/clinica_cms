@@ -15,6 +15,12 @@ class CreateUnidadeServicosTable extends Migration
     {
         Schema::create('unidade_servicos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_servico');
+            $table->unsignedBigInteger('id_unidade');
+            $table->integer('is_deleted')->default(0);
+            $table->string('nome_servico')->nullable()->default(null);
+            $table->foreign('id_servico')->references('id_servico')->on('servicos')->onDelete('cascade');
+            $table->foreign('id_unidade')->references('id_unidade')->on('unidades')->onDelete('cascade');
             $table->timestamps();
         });
     }

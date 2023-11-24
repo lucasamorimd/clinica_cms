@@ -7,6 +7,7 @@ use App\Http\Requests\StoreRequestLogin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -60,10 +61,10 @@ class LoginController extends Controller
         } else {
             $validate = Validator::make(
                 $request->all(),
-                $rules = [
+                [
                     'password' => 'exists:funcionarios,password'
                 ],
-                $messages = [
+                [
                     'password.exists' => 'Email e/ou senha incorretos'
                 ]
             );

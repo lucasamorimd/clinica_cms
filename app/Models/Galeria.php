@@ -13,4 +13,8 @@ class Galeria extends Model
         'id_servico',
         'nome_foto'
     ];
+    public function servico()
+    {
+        return $this->belongsTo(Servico::class);
+    }
 }

@@ -17,4 +17,12 @@ class Servico extends Model
         'descricao_servico',
         'foto_principal'
     ];
+    public function unidades()
+    {
+        return $this->belongsToMany(Unidade::class, 'unidade_servicos', 'id_servico', 'id_unidade');
+    }
+    public function medicos()
+    {
+        return $this->belongsToMany(Medico::class, 'medico_servicos', 'id_medico', 'id_servico');
+    }
 }

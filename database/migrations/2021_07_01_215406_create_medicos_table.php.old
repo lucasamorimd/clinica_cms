@@ -14,7 +14,15 @@ class CreateMedicosTable extends Migration
     public function up()
     {
         Schema::create('medicos', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_medico');
+            $table->string('crm');
+            $table->string('nome_medico');
+            $table->string('area_atuacao');
+            $table->integer('is_deleted')->default(0);
+            $table->unsignedBigInteger('id_unidade');
+            $table->foreign('id_unidade')->references('id_unidade')->on('unidades')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

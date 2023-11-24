@@ -16,11 +16,11 @@ class ProntuarioController extends Controller
         $prontuario = Prontuario::where('nome_arquivo', $nome_arquivo)->select('id_prontuario')->first();
         $agendamento = Agendamento::where('id_prontuario', $prontuario->id_prontuario)->select('id_usuario')->first();
         $token_user = Usuario::where('id_usuario', $agendamento->id_usuario)->select('token')->first();
-        
+
         if ($id == $agendamento->id_usuario && $token_user->token == $token) {
-            $filepath = storage_path() . "\app\public\prontuarios/" . $nome_arquivo;
-            return response()->download($filepath,'resultado.pdf');
-            //return Storage::download('public/prontuarios', $nome_arquivo);
+            $filepath = storage_path() . "/app/public/prontuarios/" . $nome_arquivo;
+            return response()->download($filepath, 'resultado.pdf');
+            // return Storage::download('public/prontuarios', $nome_arquivo);
         }
     }
 }

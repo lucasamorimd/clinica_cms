@@ -26,6 +26,10 @@ class Funcionario extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function unidade()
     {
         return $this->belongsTo(Unidade::class, 'id_unidade');

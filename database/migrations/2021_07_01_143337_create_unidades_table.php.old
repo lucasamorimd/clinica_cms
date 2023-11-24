@@ -14,7 +14,14 @@ class CreateUnidadesTable extends Migration
     public function up()
     {
         Schema::create('unidades', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_unidade');
+            $table->string('nome_unidade');
+            $table->string('endereco_unidade');
+            $table->string('cidade_unidade');
+            $table->string('estado_unidade');
+            $table->string('telefone_unidade');
+            $table->string('cnpj_unidade');
+            $table->integer('is_deleted')->default(0);
             $table->timestamps();
         });
     }

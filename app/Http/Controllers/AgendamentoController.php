@@ -137,13 +137,13 @@ class AgendamentoController extends Controller
             'resumo' => ['required'],
             'arquivo_prontuario' => ['required', 'file', 'mimes:pdf']
         ], [
-
+            
             'resumo.required' => 'Digitar algum resumo do prontuário do paciente',
             'arquivo_prontuario.required' => 'Insira um arquivo PDF',
             'arquivo_prontuario.file' => 'Arquivo inválido',
             'arquivo_prontuario.mimes' => 'Arquivo inserido não é pdf'
         ]);
-
+        
         if ($validar_arquivo->fails()) {
             return redirect()->route('atenderPendente', $request->id_agendamento)->withErrors($validar_arquivo);
         }

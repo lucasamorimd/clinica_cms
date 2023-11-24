@@ -21,8 +21,14 @@ class ServicoFactory extends Factory
      */
     public function definition()
     {
+        $array = ['consultas', 'exames', 'procedimentos'];
         return [
-            //
+            'nome_servico' => $this->faker->name(),
+            'tipo_servico' => $array[rand(0, 2)],
+            'tempo_estimado' => rand(1, 30),
+            'preco_servico' => '10',
+            'descricao_servico' => 'Teste',
+            'foto_principal' => 'asdf'
         ];
     }
 }

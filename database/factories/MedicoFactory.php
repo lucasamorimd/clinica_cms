@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Medico;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class MedicoFactory extends Factory
 {
@@ -22,7 +23,10 @@ class MedicoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'crm' => $this->faker->numberBetween(),
+            'nome_medico' => $this->faker->name(),
+            'area_atuacao' => $this->faker->name(),
+            'foto_medico'   => Hash::make('foto') . 'jpg'
         ];
     }
 }

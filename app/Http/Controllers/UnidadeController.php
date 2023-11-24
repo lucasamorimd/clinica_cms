@@ -71,7 +71,7 @@ class UnidadeController extends Controller
 
                 Unidade_servico::create([
                     'id_servico' => $servico,
-                    'id_unidade' => $nova_unidade->id,
+                    'id_unidade' => $nova_unidade->id_unidade,
                     'nome_servico' => $nome_servico->tipo_servico
                 ]);
             }

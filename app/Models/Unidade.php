@@ -23,4 +23,12 @@ class Unidade extends Model
     {
         return $this->hasMany(Funcionario::class, 'id_unidade', 'id_unidade');
     }
+    public function servicos()
+    {
+        return $this->belongsToMany(Servico::class);
+    }
+    public function medicos()
+    {
+        return $this->hasMany(Medico::class);
+    }
 }
